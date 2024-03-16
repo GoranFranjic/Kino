@@ -13,6 +13,7 @@ namespace Backend.Data
         }
 
         public DbSet<Kupac> Kupci { get; set; }
+        public DbSet<Film> Filmovi { get; set; }
 
     }
 }
