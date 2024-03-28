@@ -35,7 +35,17 @@ namespace Backend.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post(int brojKupaca)
+        public IActionResult Post(Kupac kupac)
+        {
+            _context.Kupci.Add(kupac);
+            _context.SaveChanges();
+            return new JsonResult(kupac);
+        }
+
+        /*
+        [HttpPost]
+        [Route("{id:int}")]
+        public IActionResult PostFaker(int brojKupaca)
         {
             for (int i = 0; i < brojKupaca; i++)
 
@@ -55,15 +65,15 @@ namespace Backend.Controllers
             return Ok("Dodani su" + brojKupaca + "novi kupci");
         }
 
+        */
 
 
-
-
+        
         [HttpPut]
-        [Route("{sifra:int}")]
-        public IActionResult Put(int sifra, Kupac kupac)
+        [Route("{id:int}")]
+        public IActionResult Put(int id, Kupac kupac)
         {
-            var smjerIzBaze = _context.Kupci.Find(sifra);
+            var smjerIzBaze = _context.Kupci.Find(id);
             // za sada ručno, kasnije će doći Mapper
             smjerIzBaze.Ime = kupac.Ime;
             smjerIzBaze.Prezime = kupac.Prezime;
@@ -75,13 +85,14 @@ namespace Backend.Controllers
 
             return new JsonResult(smjerIzBaze);
         }
+        
 
         [HttpDelete]
-        [Route("{sifra:int}")]
+        [Route("{id:int}")]
         [Produces("application/json")]
-        public IActionResult Delete(int sifra)
+        public IActionResult Delete(int id)
         {
-            var smjerIzBaze = _context.Kupci.Find(sifra);
+            var smjerIzBaze = _context.Kupci.Find(id);
             _context.Kupci.Remove(smjerIzBaze);
             _context.SaveChanges();
             return new JsonResult(new { poruka = "Obrisano" });

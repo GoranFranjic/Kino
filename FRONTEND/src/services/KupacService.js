@@ -1,9 +1,9 @@
 import {HttpService} from "./HttpService"
 
-const naziv = '/Kupac'
+const ime = '/Kupac'
 
 async function get(){
-    return await HttpService.get(naziv)
+    return await HttpService.get(ime)
     .then((odgovor)=>{
         //console.table(odgovor.data);
         return odgovor.data;
@@ -15,9 +15,9 @@ async function get(){
 }
 
 async function post(kupac){
-    return await HttpService.post(ime,kupac)
+    return await HttpService.post(ime, kupac)
     .then((odgovor)=>{
-        //console.table(odgovor.data);
+      // console.table(odgovor.data);
         return {greska: false, poruka: odgovor.data};
     })
     .catch((e)=>{
@@ -26,8 +26,8 @@ async function post(kupac){
     })
 }
 
-async function _delete(sifraKupca){
-    return await HttpService.delete(naziv + '/'+sifraKupca)
+async function _delete(idKupca){
+    return await HttpService.delete(ime + '/'+idKupca)
     .then((odgovor)=>{
         //console.table(odgovor.data);
         return {greska: false, poruka: odgovor.data.poruka};

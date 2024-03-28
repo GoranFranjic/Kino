@@ -24,8 +24,8 @@ export default function Kupci() {
         dohvatiKupce();
     }, []);
 
-    async function obrisiAsync(sifra) {
-        const odgovor = await KupacService._delete(sifra);
+    async function obrisiAsync(id) {
+        const odgovor = await KupacService._delete(id);
         if (odgovor.greska) {
             console.log(odgovor.poruka);
             alert('Pogledaj konzolu');
@@ -34,8 +34,8 @@ export default function Kupci() {
         dohvatiKupce();
     }
 
-    function obrisi(sifra) {
-        obrisiAsync(sifra);
+    function obrisi(id) {
+        obrisiAsync(id);
     }
 
     return (
@@ -52,7 +52,7 @@ export default function Kupci() {
                         </tr>
                     </thead>
                     <tbody>
-                        {kupci && kupci.map((kupac, index) => (
+                    {kupci && typeof kupci === 'object' && Array.isArray(kupci) && kupci.map((kupac, index) => (
                             <tr key={index}>
                                 <td>{kupac.ime}</td>
                                 <td>{kupac.prezime}</td>
@@ -60,7 +60,7 @@ export default function Kupci() {
                                 <td>{kupac.broj_telefona}</td>
                                 <td>
                                     <Button
-                                        onClick={() => obrisi(kupac.sifra)}
+                                        onClick={() => obrisi(kupac.id)}
                                         variant='danger'
                                     >
                                         Obriši

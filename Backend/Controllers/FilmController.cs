@@ -35,10 +35,10 @@ namespace Backend.Controllers
         }
 
         [HttpPut]
-        [Route("{sifra:int}")]
-        public IActionResult Put(int sifra, Film smjer)
+        [Route("{id:int}")]
+        public IActionResult Put(int id, Film smjer)
         {
-            var smjerIzBaze = _context.Filmovi.Find(sifra);
+            var smjerIzBaze = _context.Filmovi.Find(id);
             // za sada ručno, kasnije će doći Mapper
             smjerIzBaze.Naziv = smjer.Naziv;
             smjerIzBaze.Trajanje= smjer.Trajanje;
@@ -52,11 +52,11 @@ namespace Backend.Controllers
         }
 
         [HttpDelete]
-        [Route("{sifra:int}")]
+        [Route("{id:int}")]
         [Produces("application/json")]
-        public IActionResult Delete(int sifra)
+        public IActionResult Delete(int id)
         {
-            var smjerIzBaze = _context.Filmovi.Find(sifra);
+            var smjerIzBaze = _context.Filmovi.Find(id);
             _context.Filmovi.Remove(smjerIzBaze);
             _context.SaveChanges();
             return new JsonResult(new { poruka="Obrisano"});

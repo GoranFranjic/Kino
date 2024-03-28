@@ -24,14 +24,14 @@ export default function KupciDodaj(){
 
         const podaci = new FormData(e.target);
 
-        const smjer = {
-            ime: podaci.get('ime'),  // 'naziv' je name atribut u Form.Control
+        const kupac = {
+            ime: podaci.get('ime'),  // 'ime' je name atribut u Form.Control
             prezime: podaci.get('prezime'), //na backend je int
             email: podaci.get('email'),
             broj_telefona: podaci.get('broj_telefona')            
         };
 
-        //console.log(smjer);
+        //console.log(kupac);
         dodaj(kupac);
 
     }
@@ -64,7 +64,7 @@ export default function KupciDodaj(){
                 <hr />
                 <Row>
                     <Col xs={6} sm={6} md={3} lg={6} xl={1} xxl={2}>
-                        <Link className="btn btn-danger siroko" to={RoutesNames.SMJER_PREGLED}>
+                        <Link className="btn btn-danger siroko" to={RoutesNames.KUPAC_PREGLED}>
                             Odustani
                         </Link>
                     </Col>
