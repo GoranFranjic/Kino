@@ -26,6 +26,18 @@ async function post(kupac){
     })
 }
 
+async function put(id,kupac){
+    return await HttpService.put(ime + '/'+id,kupac)
+    .then((odgovor)=>{
+        //console.table(odgovor.data);
+        return {greska: false, poruka: odgovor.data};
+    })
+    .catch((e)=>{
+        //console.log(e);
+        return {greska: true, poruka: e};
+    })
+}
+
 async function _delete(idKupca){
     return await HttpService.delete(ime + '/'+idKupca)
     .then((odgovor)=>{
@@ -38,8 +50,21 @@ async function _delete(idKupca){
     })
 }
 
+async function getById(id){
+    return await HttpService.get(ime+'/'+id)
+    .then((o)=>{
+        return {greska: false, poruka: o.data}
+    })
+    .catch((e)=>{
+        return {greska: true, poruka: e}
+    });
+}
+
+
 export default{
     get,
     post,
-    _delete
+    _delete,
+    getById,
+    put
 }

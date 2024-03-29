@@ -23,15 +23,14 @@ namespace Backend.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            try
-            {
-                return new JsonResult(_context.Kupci.ToList());
-            }
-            catch (Exception ex)
-            {
-                return new JsonResult(ex.ToString());
-            }
+            return new JsonResult(_context.Kupci.ToList());
+        }
 
+        [HttpGet]
+        [Route("{id:int}")]
+        public IActionResult GetById(int id)
+        {
+            return new JsonResult(_context.Kupci.Find(id));
         }
 
         [HttpPost]
@@ -42,30 +41,7 @@ namespace Backend.Controllers
             return new JsonResult(kupac);
         }
 
-        /*
-        [HttpPost]
-        [Route("{id:int}")]
-        public IActionResult PostFaker(int brojKupaca)
-        {
-            for (int i = 0; i < brojKupaca; i++)
-
-            {
-                var noviKupac = new Kupac
-                {
-                    Ime = Faker.Name.First(),
-                    Prezime = Faker.Name.Last(),
-                    Email = Faker.Internet.Email(),
-                    Broj_telefona = Faker.Phone.Number()
-            };
-
-                _context.Kupci.Add(noviKupac);
-
-            }
-            _context.SaveChanges();
-            return Ok("Dodani su" + brojKupaca + "novi kupci");
-        }
-
-        */
+       
 
 
         
@@ -73,17 +49,17 @@ namespace Backend.Controllers
         [Route("{id:int}")]
         public IActionResult Put(int id, Kupac kupac)
         {
-            var smjerIzBaze = _context.Kupci.Find(id);
+            var kupacIzBaze = _context.Kupci.Find(id);
             // za sada ručno, kasnije će doći Mapper
-            smjerIzBaze.Ime = kupac.Ime;
-            smjerIzBaze.Prezime = kupac.Prezime;
-            smjerIzBaze.Email = kupac.Email;
-            smjerIzBaze.Broj_telefona = kupac.Broj_telefona;
+            kupacIzBaze.Ime = kupac.Ime;
+            kupacIzBaze.Prezime = kupac.Prezime;
+            kupacIzBaze.Email = kupac.Email;
+            kupacIzBaze.Broj_telefona = kupac.Broj_telefona;
 
-            _context.Kupci.Update(smjerIzBaze);
+            _context.Kupci.Update(kupacIzBaze);
             _context.SaveChanges();
 
-            return new JsonResult(smjerIzBaze);
+            return new JsonResult(kupacIzBaze);
         }
         
 
