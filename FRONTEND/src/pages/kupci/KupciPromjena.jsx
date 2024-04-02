@@ -16,7 +16,7 @@ export default function KupciPromjena() {
             alert('pogledaj konzolu');
             return;
         }
-        setKupac(o);
+        setKupac(o.poruka);
     }
 
     async function promjeni(kupac) {
