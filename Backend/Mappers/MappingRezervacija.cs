@@ -8,15 +8,15 @@ namespace Backend.Mappers
 
         public MappingRezervacija()
         {
-            MapperMapReadToDTO = new Mapper(new MapperConfiguration(c =>{
-                c.CreateMap<Rezervacija, RezervacijaDTORead>()
-                .ConstructUsing(entitet =>
-                 new RezervacijaDTORead(
-                    entitet.Id,
-                    entitet.Film,
-                    entitet.Kupac,
-                    entitet.Datum,
-                    entitet.BrojSjedala));
+            MapperMapReadToDTO = new Mapper(new MapperConfiguration(c => {
+            c.CreateMap<Rezervacija, RezervacijaDTORead>()
+            .ConstructUsing(entitet =>
+             new RezervacijaDTORead(
+                entitet.Id,
+                entitet.Film?.ToString(),
+                entitet.Kupac?.ToString(),
+                entitet.Brojsjedala,
+                entitet.Datum));
             }));
 
             MapperMapInsertUpdatedFromDTO = new Mapper(new MapperConfiguration(c =>{

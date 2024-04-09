@@ -24,24 +24,15 @@ namespace Backend.Models
         int? Trajanje
         );
 
-    public record RezervacijaDTORead(int Id, string? Ime,
-        string? KupacIme, string? FilmNaziv, int Brojsjedala, DateOnly? Datum
+    public record RezervacijaDTORead(int Id, string? KupacIme, string? FilmNaziv, int Brojsjedala, DateOnly? Datum
         )
     {
-        private int? film;
-        private int? kupac;
-        private DateOnly? datum;
-        private int? brojSjedala;
-
-        public RezervacijaDTORead(int id, int? film, int? kupac, DateOnly? datum, int? brojSjedala)
-        {
-            Id = id;
-            this.film = film;
-            this.kupac = kupac;
-            this.datum = datum;
-            this.brojSjedala = brojSjedala;
-        }
+        private string? KupacIme;
+        private string? FilmNaziv;
+        private DateOnly? Datum;
+        private int? Brojsjedala;
     }
+
 
     // ako se parametar zove kao svojstvo nekog tipa u toj klasi tada uzima punu putanju klase (npr. EdunovaAPP.Models.Film)
 
@@ -58,13 +49,7 @@ namespace Backend.Models
         private int? v2;
         private DateOnly? datum;
 
-        public RezervacijaDTOInsertUpdate(int id, int? v1, int? v2, DateOnly? datum)
-        {
-            this.id = id;
-            this.v1 = v1;
-            this.v2 = v2;
-            this.datum = datum;
-        }
+
     }
 }
 
