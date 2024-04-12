@@ -1,77 +1,35 @@
 ﻿using Backend.Data;
 using Backend.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Text;
 
 namespace Backend.Controllers
 {
     [ApiController]
     [Route("api/v1/[controller]")]
-    public class KupacController : ControllerBase
+    public class KupacController : EdunovaController<Kupac, KupacDTORead, KupacDTOInsertUpdate>
     {
-        // Dependency injection
-        // Definiraš privatno svojstvo
-        private readonly EdunovaContext _context;
-
-        // Dependency injection
-        // U konstruktoru primir instancu i dodjeliš privatnom svojstvu
-        public KupacController(EdunovaContext context)
+        public KupacController(EdunovaContext context) : base(context)
         {
-            _context = context;
+            DbSet = _context.Kupci;
         }
-
-
-        [HttpGet]
-        public IActionResult Get()
+        protected override void KontrolaBrisanje(Kupac entitet)
         {
-            return new JsonResult(_context.Kupci.ToList());
-        }
-
-        [HttpGet]
-        [Route("{id:int}")]
-        public IActionResult GetById(int id)
-        {
-            return new JsonResult(_context.Kupci.Find(id));
-        }
-
-        [HttpPost]
-        public IActionResult Post(Kupac kupac)
-        {
-            _context.Kupci.Add(kupac);
-            _context.SaveChanges();
-            return new JsonResult(kupac);
-        }
-
-       
-
-
-        
-        [HttpPut]
-        [Route("{id:int}")]
-        public IActionResult Put(int id, Kupac kupac)
-        {
-            var kupacIzBaze = _context.Kupci.Find(id);
-            // za sada ručno, kasnije će doći Mapper
-            kupacIzBaze.Ime = kupac.Ime;
-            kupacIzBaze.Prezime = kupac.Prezime;
-            kupacIzBaze.Email = kupac.Email;
-            kupacIzBaze.Broj_telefona = kupac.Broj_telefona;
-
-            _context.Kupci.Update(kupacIzBaze);
-            _context.SaveChanges();
-
-            return new JsonResult(kupacIzBaze);
-        }
-        
-
-        [HttpDelete]
-        [Route("{id:int}")]
-        [Produces("application/json")]
-        public IActionResult Delete(int id)
-        {
-            var smjerIzBaze = _context.Kupci.Find(id);
-            _context.Kupci.Remove(smjerIzBaze);
-            _context.SaveChanges();
-            return new JsonResult(new { poruka = "Obrisano" });
+            var lista = _context.Rezervacije
+                .Include(x => x.Kupac)
+                //.Where(x => x.Kupac.Id == entitet.Id)
+                .ToList();
+            if (lista != null && lista.Count > 0)
+            {
+                StringBuilder sb = new();
+                sb.Append("Kupac se ne može obrisati jer je postavljen na rezervacijama: ");
+                foreach (var e in lista)
+                {
+                    sb.Append(e.Film).Append(", ");
+                }
+                throw new Exception(sb.ToString()[..^2]); // umjesto sb.ToString().Substring(0, sb.ToString().Length - 2)
+            }
         }
 
     }

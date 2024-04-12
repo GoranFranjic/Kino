@@ -23,32 +23,31 @@ namespace Backend.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return new JsonResult(_context.Filmovi.ToList());
+            return new JsonResult(_context.Rezervacije.ToList());
         }
 
         [HttpPost]
-        public IActionResult Post(Film smjer)
+        public IActionResult Post(Film kupac)
         {
-            _context.Filmovi.Add(smjer);
+            
             _context.SaveChanges();
-            return new JsonResult(smjer);
+            return new JsonResult(kupac);
         }
 
         [HttpPut]
         [Route("{id:int}")]
-        public IActionResult Put(int id, Film smjer)
+        public IActionResult Put(int id, Film kupac)
         {
-            var smjerIzBaze = _context.Filmovi.Find(id);
+            var kupacIzBaze = _context.Rezervacije.Find(id);
             // za sada ručno, kasnije će doći Mapper
-            smjerIzBaze.Naziv = smjer.Naziv;
-            smjerIzBaze.Trajanje= smjer.Trajanje;
-            smjerIzBaze.Dvorana= smjer.Dvorana;
+            kupacIzBaze.Film = kupac.Naziv;
+            
             
 
-            _context.Filmovi.Update(smjerIzBaze);
+            _context.Rezervacije.Update(kupacIzBaze);
             _context.SaveChanges();
 
-            return new JsonResult(smjerIzBaze);
+            return new JsonResult(kupacIzBaze);
         }
 
         [HttpDelete]
@@ -56,8 +55,8 @@ namespace Backend.Controllers
         [Produces("application/json")]
         public IActionResult Delete(int id)
         {
-            var smjerIzBaze = _context.Filmovi.Find(id);
-            _context.Filmovi.Remove(smjerIzBaze);
+            var kupacIzBaze = _context.Rezervacije.Find(id);
+            _context.Rezervacije.Remove(kupacIzBaze);
             _context.SaveChanges();
             return new JsonResult(new { poruka="Obrisano"});
         }
