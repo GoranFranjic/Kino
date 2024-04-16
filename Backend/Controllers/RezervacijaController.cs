@@ -18,7 +18,7 @@ namespace Backend.Controllers
         }
         protected override void KontrolaBrisanje(Rezervacija entitet)
         {
-            if (entitet!=null && entitet.Film != null && entitet.Film.Count() > 0)
+            /*if (entitet!=null && entitet.Film != null && entitet.Film.Count() > 0)
             {
                 StringBuilder sb = new StringBuilder();
                 sb.Append("Rez se ne može obrisati: ");
@@ -28,7 +28,7 @@ namespace Backend.Controllers
                 }
 
                 throw new Exception(sb.ToString()[..^2]);
-            }
+            }*/
         }
 
         protected override Rezervacija KreirajEntitet(RezervacijaDTOInsertUpdate dto)

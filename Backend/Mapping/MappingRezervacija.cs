@@ -14,9 +14,8 @@ namespace Backend.Mappers
                  new RezervacijaDTORead(
                     entitet.Id,
                     entitet.Film,
-                    entitet.Kupac == null ? "" : entitet.Kupac,
-                    entitet.Kupac!.Count(),
-                    //entitet.BrojSjedala,
+                    entitet.Kupac,
+                    entitet.BrojSjedala,
                     entitet.Datum));
         }));
 
@@ -28,10 +27,10 @@ namespace Backend.Mappers
                  c.CreateMap<Rezervacija, RezervacijaDTOInsertUpdate>()
                  .ConstructUsing(entitet =>
                   new RezervacijaDTOInsertUpdate(
+                     entitet.Id,
                      entitet.Film,
-                     entitet.Kupac == null ? null : entitet.Kupac,
                      entitet.Datum,
-                     entitet.BrojSjedala));
+                     entitet.Kupac));
              }));
         }
 
