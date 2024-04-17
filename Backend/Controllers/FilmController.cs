@@ -1,65 +1,30 @@
-﻿using Backend.Data;
+﻿using System.Text;
 using Backend.Models;
+using Backend.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Backend.Controllers
 {
     [ApiController]
     [Route("api/v1/[controller]")]
-    public class FilmController
+    public class FilmoviController : EdunovaController<Film, FilmDTORead, FilmDTOInsertUpdate>
     {
-        // Dependency injection
-        // Definiraš privatno svojstvo
-        private readonly EdunovaContext _context;
-
-        // Dependency injection
-        // U konstruktoru primir instancu i dodjeliš privatnom svojstvu
-        public FilmController(EdunovaContext context)
+        public FilmoviController(EdunovaContext context) : base(context)
         {
-            _context = context;
+            DbSet = _context.Filmovi;
         }
-
-
-        [HttpGet]
-        public IActionResult Get()
+        protected override void KontrolaBrisanje(Film entitet)
         {
-            return new JsonResult(_context.Rezervacije.ToList());
+            var lista = _context.Kupci;
+             
+                StringBuilder sb = new();
+                sb.Append("Film se ne može obrisati jer se na njoj nalaze proizvodi: ");
+                foreach (var e in lista)
+                {
+                    sb.Append(e.Ime).Append(", ");
+                }
+                throw new Exception(sb.ToString()[..^2]); // umjesto sb.ToString().Substring(0, sb.ToString().Length - 2)
+            }
         }
-
-        [HttpPost]
-        public IActionResult Post(Film kupac)
-        {
-            
-            _context.SaveChanges();
-            return new JsonResult(kupac);
-        }
-
-        [HttpPut]
-        [Route("{id:int}")]
-        public IActionResult Put(int id, Film kupac)
-        {
-            var kupacIzBaze = _context.Rezervacije.Find(id);
-            // za sada ručno, kasnije će doći Mapper
-            kupacIzBaze.Film = kupac.Naziv;
-            
-            
-
-            _context.Rezervacije.Update(kupacIzBaze);
-            _context.SaveChanges();
-
-            return new JsonResult(kupacIzBaze);
-        }
-
-        [HttpDelete]
-        [Route("{id:int}")]
-        [Produces("application/json")]
-        public IActionResult Delete(int id)
-        {
-            var kupacIzBaze = _context.Rezervacije.Find(id);
-            _context.Rezervacije.Remove(kupacIzBaze);
-            _context.SaveChanges();
-            return new JsonResult(new { poruka="Obrisano"});
-        }
-
     }
-}

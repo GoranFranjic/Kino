@@ -33,7 +33,7 @@ namespace Backend.Controllers
         }
         [HttpGet]
         [Route("{id:int}")]
-        public IActionResult GetById(int id)
+        public IActionResult GetBySifra(int id)
         {
             if (!ModelState.IsValid || id <= 0)
             {
@@ -91,7 +91,7 @@ namespace Backend.Controllers
                 _context.Update(entitet);
                 _context.SaveChanges();
 
-                return StatusCode(StatusCodes.Status200OK, _mapper.MapReadToDTO(entitet));
+                return StatusCode(StatusCodes.Status200OK, _mapper.MapInsertUpdateToDTO(entitet));
             }
             catch (Exception ex)
             {
