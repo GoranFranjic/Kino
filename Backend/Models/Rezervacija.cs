@@ -1,10 +1,10 @@
 ﻿namespace Backend.Models
 {
-    public class Kupac: Entitet
+    public class Rezervacija: Entitet
     {
-        public string? Ime { get; set; }
-        public string? Prezime { get; set; }
-        public string? Email { get; set; }
-        public string? Broj_telefona { get; set; }
+        public int? FilmId { get; set; }
+        public int? KupacId { get; set; }
+        public int? BrojSjedala { get; set; }
+        public DateTime? Datum { get; set; }
     }
 }
