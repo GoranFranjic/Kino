@@ -15,7 +15,7 @@ namespace Backend.Mappers
                     entitet.Id,
                     entitet.Naziv,
                     entitet.Trajanje,
-                    entitet.Dvorana)); ;
+                    entitet.Dvorana));
             }));
 
             MapperMapInsertUpdatedFromDTO = new Mapper(new MapperConfiguration(c =>{

@@ -20,7 +20,7 @@ namespace Backend.Controllers
                 
             {
                 StringBuilder sb = new();
-                sb.Append("Kupac se ne može obrisati jer se na njoj nalaze proizvodi: ");
+                sb.Append("Kupac se ne može obrisati: ");
                 foreach (var e in lista)
                 {
                     sb.Append(e.Naziv).Append(", ");

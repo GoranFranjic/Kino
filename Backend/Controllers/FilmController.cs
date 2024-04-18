@@ -19,7 +19,7 @@ namespace Backend.Controllers
             var lista = _context.Kupci;
              
                 StringBuilder sb = new();
-                sb.Append("Film se ne može obrisati jer se na njoj nalaze proizvodi: ");
+                sb.Append("Film se ne može obrisati: ");
                 foreach (var e in lista)
                 {
                     sb.Append(e.Ime).Append(", ");

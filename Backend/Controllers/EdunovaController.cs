@@ -33,7 +33,7 @@ namespace Backend.Controllers
         }
         [HttpGet]
         [Route("{id:int}")]
-        public IActionResult GetBySifra(int id)
+        public IActionResult GetById(int id)
         {
             if (!ModelState.IsValid || id <= 0)
             {
