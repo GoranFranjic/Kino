@@ -14,6 +14,7 @@ namespace Backend.Data
 
         public DbSet<Kupac> Kupci { get; set; }
         public DbSet<Film> Filmovi { get; set; }
+        public DbSet<Rezervacija> Rezervacije { get; set; }
 
     }
 }

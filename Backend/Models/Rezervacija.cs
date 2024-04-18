@@ -1,9 +1,14 @@
-﻿namespace Backend.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Backend.Models
 {
     public class Rezervacija: Entitet
     {
-        public int? FilmId { get; set; }
-        public int? KupacId { get; set; }
+        [ForeignKey("film")]
+        public required Film Film { get; set; }
+
+        [ForeignKey("kupac")]
+        public required Kupac Kupac { get; set; }
         public int? BrojSjedala { get; set; }
         public DateTime? Datum { get; set; }
     }
