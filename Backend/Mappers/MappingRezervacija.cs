@@ -15,7 +15,7 @@ namespace Backend.Mappers
                     entitet.Id,
                     entitet.Film.Id,
                     entitet.Kupac.Id,
-                    entitet.BrojSjedala,
+                    entitet.Broj_Sjedala,
                     entitet.Datum));
             }));
 
@@ -29,7 +29,7 @@ namespace Backend.Mappers
                  new RezervacijaDTOInsertUpdate(
                     entitet.Film.Id,
                     entitet.Kupac.Id,
-                    entitet.BrojSjedala,
+                    entitet.Broj_Sjedala,
                     entitet.Datum));
             }));
         }

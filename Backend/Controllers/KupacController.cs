@@ -16,17 +16,7 @@ namespace Backend.Controllers
         }
         protected override void KontrolaBrisanje(Kupac entitet)
         {
-            var lista = _context.Filmovi;
-                
-            {
-                StringBuilder sb = new();
-                sb.Append("Kupac se ne može obrisati: ");
-                foreach (var e in lista)
-                {
-                    sb.Append(e.Naziv).Append(", ");
-                }
-                throw new Exception(sb.ToString()[..^2]); // umjesto sb.ToString().Substring(0, sb.ToString().Length - 2)
-            }
+           
         }
     }
 }

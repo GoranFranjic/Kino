@@ -16,15 +16,7 @@ namespace Backend.Controllers
         }
         protected override void KontrolaBrisanje(Film entitet)
         {
-            var lista = _context.Kupci;
-             
-                StringBuilder sb = new();
-                sb.Append("Film se ne može obrisati: ");
-                foreach (var e in lista)
-                {
-                    sb.Append(e.Ime).Append(", ");
-                }
-                throw new Exception(sb.ToString()[..^2]); // umjesto sb.ToString().Substring(0, sb.ToString().Length - 2)
-            }
+
         }
     }
+}

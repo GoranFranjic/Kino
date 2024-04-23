@@ -4,12 +4,12 @@ namespace Backend.Models
 {
     public class Rezervacija: Entitet
     {
-        [ForeignKey("film")]
+        [ForeignKey("film_id")]
         public required Film Film { get; set; }
 
-        [ForeignKey("kupac")]
+        [ForeignKey("kupac_id")]
         public required Kupac Kupac { get; set; }
-        public int? BrojSjedala { get; set; }
+        public int? Broj_Sjedala { get; set; }
         public DateTime? Datum { get; set; }
     }
 }

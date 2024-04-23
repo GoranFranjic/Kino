@@ -8,7 +8,7 @@ namespace Backend.Mappers
 
         public MappingKupac()
         {
-            MapperMapReadToDTO = new Mapper(new MapperConfiguration(c =>{
+            MapperMapReadToDTO = new Mapper(new MapperConfiguration(c => {
                 c.CreateMap<Kupac, KupacDTORead>()
                 .ConstructUsing(entitet =>
                  new KupacDTORead(
@@ -19,18 +19,18 @@ namespace Backend.Mappers
                     entitet.Broj_telefona));
             }));
 
-            MapperMapInsertUpdatedFromDTO = new Mapper(new MapperConfiguration(c =>{
-                    c.CreateMap<KupacDTOInsertUpdate, Kupac>();
-                }));
+            MapperMapInsertUpdatedFromDTO = new Mapper(new MapperConfiguration(c => {
+                c.CreateMap<KupacDTOInsertUpdate, Kupac>();
+            }));
 
-            MapperMapInsertUpdateToDTO = new Mapper(new MapperConfiguration(c =>{
-                 c.CreateMap<Kupac, KupacDTOInsertUpdate>()
-                 .ConstructUsing(entitet =>
-                  new KupacDTOInsertUpdate(
-                    entitet.Ime,
-                    entitet.Prezime,
-                    entitet.Email,
-                    entitet.Broj_telefona));
+            MapperMapInsertUpdateToDTO = new Mapper(new MapperConfiguration(c => {
+                c.CreateMap<Kupac, KupacDTOInsertUpdate>()
+                .ConstructUsing(entitet =>
+                 new KupacDTOInsertUpdate(
+                   entitet.Ime,
+                   entitet.Prezime,
+                   entitet.Email,
+                   entitet.Broj_telefona));
             }));
         }
 
