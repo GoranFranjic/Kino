@@ -1,6 +1,6 @@
 import {HttpService} from "./HttpService"
 
-const ime = '/Kupac'
+const ime = '/Kupci'
 
 async function get(){
     return await HttpService.get(ime)
