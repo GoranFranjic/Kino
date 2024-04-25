@@ -29,12 +29,13 @@ export default function NavBar(){
                     onClick={()=>navigate(RoutesNames.KUPAC_PREGLED)}
                     >Kupci</NavDropdown.Item>
 
-                    <NavDropdown.Item href="#action/3.2">
-                       Filmovi
-                    </NavDropdown.Item>
-                    <NavDropdown.Item href="#action/3.3">
-                        Rezervacije
-                        </NavDropdown.Item>
+                    <NavDropdown.Item 
+                    onClick={()=>navigate(RoutesNames.FILM_PREGLED)}
+                    >Filmovi</NavDropdown.Item>
+
+                    <NavDropdown.Item 
+                    onClick={()=>navigate(RoutesNames.REZERVACIJA_PREGLED)}
+                    >Rezervacije</NavDropdown.Item>
                 
                     </NavDropdown>
                 </Nav>
