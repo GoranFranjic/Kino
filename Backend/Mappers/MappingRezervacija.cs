@@ -13,8 +13,8 @@ namespace Backend.Mappers
                 .ConstructUsing(entitet =>
                  new RezervacijaDTORead(
                     entitet.Id,
-                    entitet.Film.Id,
-                    entitet.Kupac.Id,
+                    entitet.Film.Naziv,
+                    entitet.Kupac.Ime + " " + entitet.Kupac.Prezime,
                     entitet.Broj_Sjedala,
                     entitet.Datum));
             }));
