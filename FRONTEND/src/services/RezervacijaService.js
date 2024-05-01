@@ -15,7 +15,7 @@ async function get(){
 }
 
 async function post(rezervacija){
-    return await HttpService.post(ime, film_id)
+    return await HttpService.post(ime, film.id)
     .then((odgovor)=>{
       // console.table(odgovor.data);
         return {greska: false, poruka: odgovor.data};

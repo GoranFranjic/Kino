@@ -8,7 +8,7 @@ import RezervacijaService from "../../services/RezervacijaService";
 export default function RezervacijeDodaj(){
     const navigate = useNavigate();
 
-    async function dodaj(rezervaciju){
+    async function dodaj(rezervacija){
         const odgovor = await RezervacijaService.post(rezervacija);
         if (odgovor.greska){
             console.log(odgovor.poruka);
@@ -25,14 +25,14 @@ export default function RezervacijeDodaj(){
         const podaci = new FormData(e.target);
 
         const rezervacija = {
-            filmId: podaci.get('filmId'),  // 'ime' je name atribut u Form.Control
-            kupacId: podaci.get('kupacId'), //na backend je int
+            filmNaziv: podaci.get('filmId'),  // 'ime' je name atribut u Form.Control
+            kupacImePrezime: podaci.get('kupacId'), //na backend je int
             broj_Sjedala: podaci.get('broj_Sjedala'),
             datum: podaci.get('datum'),
         };
 
         //console.log(rezervacija);
-        dodaj(rezervaciju);
+        dodaj(rezervacija);
 
     }
 

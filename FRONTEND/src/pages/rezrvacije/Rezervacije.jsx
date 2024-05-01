@@ -48,17 +48,17 @@ export default function Rezervacije() {
                 <Table striped bordered hover responsive>
                     <thead>
                         <tr>
-                            <th>filmID</th>
-                            <th>kupacID</th>
-                            <th>broj_Sjedala</th>
-                            <th>datum</th>
+                            <th>Film</th>
+                            <th>Kupac</th>
+                            <th>Broj Sjedala</th>
+                            <th>Datum</th>
                         </tr>
                     </thead>
                     <tbody>
                     {rezervacije && typeof rezervacije === 'object' && Array.isArray(rezervacije) && rezervacije.map((rezervacija, index) => (
                             <tr key={index}>
-                                <td>{rezervacija.filmID}</td>
-                                <td>{rezervacija.kupacID}</td>
+                                <td>{rezervacija.filmNaziv}</td>
+                                <td>{rezervacija.kupacImePrezime}</td>
                                 <td>{rezervacija.broj_Sjedala}</td>
                                 <td>{rezervacija.datum}</td>
                             <td>
