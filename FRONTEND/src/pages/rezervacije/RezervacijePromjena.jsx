@@ -26,7 +26,7 @@ export default function RezervacijePromjena() {
             alert('Pogledaj konzolu');
             return;
         }
-        navigate(RoutesNames.FREZERVACIJA_PREGLED);
+        navigate(RoutesNames.REZERVACIJA_PREGLED);
     }
 
     useEffect(() => {

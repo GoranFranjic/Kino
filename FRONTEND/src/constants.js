@@ -12,5 +12,12 @@ export const RoutesNames = {
     REZERVACIJA_PREGLED: '/rezervacije',
     REZERVACIJA_NOVI: '/rezervacije/dodaj',
     REZERVACIJA_PROMJENI: '/rezervacije/:id'
+
+
     
+};
+
+export const App = {
+    URL: 'https://goranf-001-site1.htempurl.com',
+    DEV: false
 };

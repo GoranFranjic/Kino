@@ -10,9 +10,9 @@ import KupciPromjena from './pages/kupci/KupciPromjena'
 import Filmovi from './pages/filmovi/Filmovi'
 import FilmoviDodaj from './pages/filmovi/FilmoviDodaj'
 import FilmoviPromjena from './pages/filmovi/FilmoviPromjena'
-import Rezervacije from './pages/rezrvacije/Rezervacije'
-import RezervacijePromjena from './pages/rezrvacije/RezervacijePromjena'
-import RezervacijeDodaj from './pages/rezrvacije/RezervacijeDodaj'
+import Rezervacije from './pages/rezervacije/Rezervacije'
+import RezervacijePromjena from './pages/rezervacije/RezervacijePromjena'
+import RezervacijeDodaj from './pages/rezervacije/RezervacijeDodaj'
 
 function App() {
 
