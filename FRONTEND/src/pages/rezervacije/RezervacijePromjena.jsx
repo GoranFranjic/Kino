@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { RoutesNames } from "../../constants";
 import RezervacijaService from "../../services/RezervacijaService";
 import { useEffect, useState } from "react";
+import moment from "moment";    
 
 export default function RezervacijePromjena() {
     const navigate = useNavigate();
@@ -38,6 +39,21 @@ export default function RezervacijePromjena() {
         
         const podaci = new FormData(e.target);
 
+        if(podaci.get('datum')=='' && podaci.get('vrijeme')!=''){
+            alert('Ako postavljate vrijeme morate i datum');
+            return;
+          }
+          let datum=null;
+          if(podaci.get('datum')!=''){
+            if (podaci.get('vrijeme')!=''){
+              datum = moment.utc(podaci.get('datum') + ' ' + podaci.get('vrijeme'));
+            }else{
+              datum = moment.utc(podaci.get('datum'));
+            }
+            
+          }
+
+
         const noviRezervacija = {
             filmId: podaci.get('filmId'),
             kupacId: podaci.get('kupacId'),
@@ -66,10 +82,21 @@ export default function RezervacijePromjena() {
                     <Form.Control type="text" name="broj_Sjedala" defaultValue={rezervacija.broj_Sjedala} required />
                 </Form.Group>
 
-                <Form.Group controlId="datum">
-                    <Form.Label>Datum</Form.Label>
-                    <Form.Control type="text" name="datum" defaultValue={rezervacija.datum} required />
-                </Form.Group>
+                <Form.Group className='mb-3' controlId='datum'>
+          <Form.Label>Datum</Form.Label>
+          <Form.Control
+            type='date'
+            name='datum'
+          />
+        </Form.Group>
+
+        <Form.Group className='mb-3' controlId='vrijeme'>
+          <Form.Label>Vrijeme</Form.Label>
+          <Form.Control
+            type='time'
+            name='vrijeme'
+          />
+        </Form.Group>
 
                 <hr />
                 <Row>

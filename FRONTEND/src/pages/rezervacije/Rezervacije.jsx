@@ -4,6 +4,7 @@ import { Button, Table } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import { RoutesNames } from '../../constants';
 import RezervacijaService from '../../services/RezervacijaService';
+import moment from 'moment';    
 
 
 export default function Rezervacije() {
@@ -39,6 +40,15 @@ export default function Rezervacije() {
         obrisiAsync(id);
     }
 
+    function formatirajDatum(datum){
+        let mdp = moment.utc(datum);
+        if(mdp.hour()==0 && mdp.minutes()==0){
+            return mdp.format('DD. MM. YYYY.');
+        }
+        return mdp.format('DD. MM. YYYY. HH:mm');
+        
+        }
+
     return (
         <>
             <Container>
@@ -60,7 +70,17 @@ export default function Rezervacije() {
                                 <td>{rezervacija.filmNaziv}</td>
                                 <td>{rezervacija.kupacImePrezime}</td>
                                 <td>{rezervacija.broj_Sjedala}</td>
-                                <td>{rezervacija.datum}</td>
+                                
+
+                                <p>
+                                {rezervacija.datum==null 
+                                ? 'Nije definirano'
+                                :   
+                                formatirajDatum(rezervacija.datum)
+                                }
+                                </p>
+
+
                             <td>
     <div style={{ marginBottom: '5px' }}>
         <Button
