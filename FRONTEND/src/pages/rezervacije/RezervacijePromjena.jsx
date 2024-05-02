@@ -68,7 +68,7 @@ export default function RezervacijePromjena() {
         <Container>
             <Form onSubmit={obradiSubmit}>
                 <Form.Group controlId="filmId">
-                    <Form.Label>Naziv</Form.Label>
+                    <Form.Label>Film</Form.Label>
                     <Form.Control type="text" name="filmId" defaultValue={rezervacija.filmId} required />
                 </Form.Group>
 

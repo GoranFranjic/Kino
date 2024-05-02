@@ -2,11 +2,13 @@ import { Container, Form} from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Service from '../../services/RezervacijaService';
+import FilmService from '../../services/FilmService';
+import KupacService from '../../services/KupacService';
 import { RoutesNames } from '../../constants';
 import InputText from '../../components/InputText';
 import Akcije from '../../components/Akcije';
 import moment from 'moment';
-//import useError from "../../hooks/useError";
+import useError from "../../hooks/useError";
 //import useLoading from "../../hooks/useLoading";
 
 
@@ -19,35 +21,29 @@ export default function RezervacijeDodaj() {
 
   const [kupci, setKupci] = useState([]);
   const [kupacId, setKupacId] = useState(0);
-  //const { prikaziError } = useError();
+  const { prikaziError } = useError();
   //const { showLoading, hideLoading } = useLoading();
   
 
   async function dohvatiFilmove(){
-    const odgovor = await Service.get('Film');
-    if(!odgovor.ok){
-      prikaziError(odgovor.podaci);
-      return;
-    }
-    setFilmovi(odgovor.podaci);
-    setFilmId(odgovor.podaci[0].id);
+    const odgovor = await FilmService.get();
+    
+    setFilmovi(odgovor);
+    setFilmId(odgovor[0].id);
   }
 
   async function dohvatiKupci(){
-    const odgovor = await Service.get('Kupac');
-    if(!odgovor.ok){
-      prikaziError(odgovor.podaci);
-        return;
-    }
-    setKupci(odgovor.podaci);
-    setKupacId(odgovor.podaci[0].id);
+    const odgovor = await KupacService.get();
+    
+    setKupci(odgovor);
+    setKupacId(odgovor[0].id);
   }
 
   async function ucitaj(){
-    showLoading();
+    //showLoading();
     await dohvatiFilmove();
     await dohvatiKupci();
-    hideLoading();
+    //hideLoading();
   }
 
   useEffect(()=>{
@@ -56,9 +52,9 @@ export default function RezervacijeDodaj() {
   },[]);
 
   async function dodaj(e) {
-    showLoading();
+    //showLoading();
     const odgovor = await Service.dodaj('Rezervacija',e);
-    hideLoading();
+    //hideLoading();
     if(odgovor.ok){
       navigate(RoutesNames.REZERVACIJA_PREGLED);
       return
@@ -98,7 +94,7 @@ export default function RezervacijeDodaj() {
     <Container className='mt-4'>
       <Form onSubmit={handleSubmit}>
 
-        <InputText atribut='naziv' vrijednost='' />
+       
 
         <Form.Group className='mb-3' controlId='datum'>
           <Form.Label>Datum</Form.Label>
