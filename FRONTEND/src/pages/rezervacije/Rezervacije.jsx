@@ -70,7 +70,7 @@ export default function Rezervacije() {
                                 <td>{rezervacija.filmNaziv}</td>
                                 <td>{rezervacija.kupacImePrezime}</td>
                                 <td>{rezervacija.broj_Sjedala}</td>
-                                
+                                <td>
 
                                 <p>
                                 {rezervacija.datum==null 
@@ -79,7 +79,7 @@ export default function Rezervacije() {
                                 formatirajDatum(rezervacija.datum)
                                 }
                                 </p>
-
+                                </td>
 
                             <td>
     <div style={{ marginBottom: '5px' }}>
