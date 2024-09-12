@@ -16,7 +16,7 @@ export default function NavBar() {
                     <Button variant="warning" className="me-2" onClick={() => navigate(RoutesNames.FILM_PREGLED)}>Filmovi</Button>
                     <Button variant="warning" className="me-2" onClick={() => navigate(RoutesNames.REZERVACIJA_PREGLED)}>Rezervacije</Button>
                 </Navbar.Brand>
-                <Button variant="outline-warning" href="https://goranf-001-site1.htempurl.com/swagger/index.html" target="_blank">API</Button>
+                <Button variant="outline-warning" href="https://goranf.runasp.net/swagger/index.html" target="_blank">API</Button>
             </Container>
         </Navbar>
     );

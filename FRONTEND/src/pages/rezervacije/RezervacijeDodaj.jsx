@@ -9,6 +9,7 @@ import InputText from '../../components/InputText';
 import Akcije from '../../components/Akcije';
 import moment from 'moment';
 import useError from "../../hooks/useError";
+import RezervacijaService from '../../services/RezervacijaService';
 //import useLoading from "../../hooks/useLoading";
 
 
@@ -53,7 +54,7 @@ export default function RezervacijeDodaj() {
 
   async function dodaj(e) {
     //showLoading();
-    const odgovor = await Service.dodaj('Rezervacija',e);
+    const odgovor = await RezervacijaService.post('Rezervacija',e);
     //hideLoading();
     if(odgovor.ok){
       navigate(RoutesNames.REZERVACIJA_PREGLED);
